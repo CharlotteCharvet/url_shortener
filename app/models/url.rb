@@ -1,3 +1,4 @@
+require 'URI'
 require 'securerandom'
 
 class Url < ApplicationRecord
@@ -6,7 +7,8 @@ class Url < ApplicationRecord
 	validates_format_of :long_url, :with => URI::regexp(%w(http https)), :message => "Enter a valid url, please!"
 
 	def shorten
-		return SecureRandom.hex(3)
+
+		self.short_url = SecureRandom.hex(3)
 	end
 
 
